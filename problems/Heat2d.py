@@ -152,6 +152,9 @@ while err > 0.01:
     )
     losshistory, train_state = model.train(batch_size=BATCH_SIZE,)
 
+
+model.save("./trained_PINN_model")
+
 dde.saveplot(losshistory, trainstate, issave=True, isplot=True)
 plt.show()
 plt.savefig("loss_history_plot_Heat2d")
@@ -223,7 +226,7 @@ def animate_solution(data, filename, title, label, t_data):
 # Create and save the solution animation
 animate_solution(
     predicted_solution,
-    "pinn_heat2d_solution_alpha_" + ALPHA + ".mp4",
+    f"pinn_heat2d_solution_alpha_{str(ALPHA)}.mp4",
     "Diffusion Equation",
     "Temperature (K)",
     t,
@@ -232,7 +235,7 @@ animate_solution(
 # Create and save the residuals animation
 animate_solution(
     residual,
-    "pinn_heat2d_residual_"+ALPHA+".mp4",
+    f"pinn_heat2d_residual_{str(ALPHA)}.mp4",
     "Residual",
     "Residual",
     t,
